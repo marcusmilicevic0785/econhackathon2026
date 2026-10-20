@@ -3,16 +3,17 @@
 import hashlib
 import json
 import os
-import time
 import tempfile
+import time
 from contextlib import contextmanager
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 import numpy as np
 import pandas as pd
 import requests
+from cycler import cycler
 
 ROOT = Path(__file__).resolve().parents[2]
 RAW = ROOT / "data" / "raw"
@@ -31,12 +32,12 @@ plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 11, "axes.spines
                      "axes.spines.right": False, "axes.titleweight": "bold", "axes.titlepad": 16,
                      "figure.figsize": (10, 6), "figure.facecolor": "#fafaf7",
                      "axes.facecolor": "#fafaf7", "axes.labelcolor": "#22313f",
-                     "text.color": "#22313f", "axes.prop_cycle": plt.cycler(color=["#176b87", "#c37926", "#537a45", "#9a4d70"]),
+                     "text.color": "#22313f", "axes.prop_cycle": cycler(color=["#176b87", "#c37926", "#537a45", "#9a4d70"]),
                      "savefig.dpi": 180, "svg.hashsalt": "econhack2026"})
 
 
 def utc_now():
-    return datetime.now(timezone.utc).isoformat()
+    return datetime.now(UTC).isoformat()
 
 
 def digest(path):
@@ -195,7 +196,7 @@ def regression_outputs(result, name, frame, predictors):
         labels = {"log_income": "Log household income (per ln dollar)", "poverty_pct": "Poverty share (per percentage point)",
                   "youth_pct": "Age 15–24 share (per percentage point)", "older_pct": "Age 65+ share (per percentage point)",
                   "log_density": "Log population density (per ln unit)", "log_access": "Log nearby supply (per ln unit)"}
-        axis.set_yticks(np.arange(len(terms)), [labels.get(term, term) for term in terms.term])
+        axis.set_yticks(np.arange(len(terms)), [labels.get(str(term), str(term)) for term in terms.term])
         axis.axvline(0, color="#777", linewidth=1)
         title = {"nyc_equity": "NYC access equity: adjusted associations", "access_loneliness": "Modeled loneliness: adjusted associations"}.get(name, name.replace("_", " ").title())
         axis.set(title=title, xlabel=f"Coefficient with 95% {result.cov_type} interval; predictor units differ")
