@@ -3,14 +3,21 @@
 import argparse
 import csv
 import hashlib
-import io
 import zipfile
 from pathlib import PurePosixPath
 
 import numpy as np
 import pandas as pd
 
-from .common import ROOT, PROCESSED, OUTPUTS, fetch, save_table, save_figure, record_status
+from .common import (
+    OUTPUTS,
+    PROCESSED,
+    ROOT,
+    fetch,
+    record_status,
+    save_figure,
+    save_table,
+)
 
 URL = "https://thirdplaceindex.org/data/third_place_index-main.zip"
 SOURCE = "Evan O'Neil, Third Place Index; archive README supplies release-specific metadata"
@@ -117,9 +124,10 @@ def validate_index(frame):
             invalid = int((original.notna() & ~np.isfinite(values)).sum())
             negative = int(values.lt(0).sum())
             frame[column] = values
-            if column == "total_places" or column.endswith("_count"):
-                if missing or invalid or negative or values.mod(1).ne(0).any():
-                    raise ValueError(f"TPI {column} must contain complete finite nonnegative integers")
+            if (column == "total_places" or column.endswith("_count")) and (
+                missing or invalid or negative or values.mod(1).ne(0).any()
+            ):
+                raise ValueError(f"TPI {column} must contain complete finite nonnegative integers")
             if column == "third_place_percentile" and (
                 missing or invalid or not values.between(0, 1).all()
             ):
@@ -171,7 +179,7 @@ def compare_access(frame, path):
             publishable = bool(np.isfinite(coefficient))
         correlations.append({"tpi_measure": "total_places", "official_measure": column,
                              "matched_tracts": matched_count,
-                             "spearman_rho": round(coefficient, 3) if publishable else None,
+                             "spearman_rho": round(coefficient, 3) if publishable and coefficient is not None else None,
                              "status": "descriptive" if publishable else "suppressed_insufficient_support"})
     return qa, pd.DataFrame(correlations)
 
