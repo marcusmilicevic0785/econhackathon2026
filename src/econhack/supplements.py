@@ -5,7 +5,7 @@ import json
 import pandas as pd
 from shapely.geometry import shape
 
-from .common import OUTPUTS, fetch, write_json, record_status, save_table
+from .common import OUTPUTS, fetch, record_status, save_table, write_json
 from .nyc import NYC_LICENSE
 
 
