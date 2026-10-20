@@ -6,16 +6,16 @@ setup:
 	.venv/bin/python -m pip install --no-deps -e .
 
 verify:
-	.venv/bin/econhack verify
+	PYTHONPATH=src .venv/bin/python -m econhack.cli verify
 
 test:
 	.venv/bin/python -m pytest -q
 
 reproduce:
-	.venv/bin/econhack run --offline
+	PYTHONPATH=src .venv/bin/python -m econhack.cli run --offline
 
 download:
-	.venv/bin/econhack run
+	PYTHONPATH=src .venv/bin/python -m econhack.cli run
 
 notebooks:
 	.venv/bin/python scripts/build_notebooks.py --execute
