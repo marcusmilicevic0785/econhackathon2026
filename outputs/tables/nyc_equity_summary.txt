@@ -4,7 +4,7 @@ Dep. Variable:             log_access   R-squared:                       0.487
 Model:                            OLS   Adj. R-squared:                  0.485
 Method:                 Least Squares   F-statistic:                     251.1
 Date:                Tue, 20 Oct 2026   Prob (F-statistic):               0.00
-Time:                        00:56:10   Log-Likelihood:                -1517.8
+Time:                        02:11:29   Log-Likelihood:                -1517.8
 No. Observations:                2190   AIC:                             3056.
 Df Residuals:                    2180   BIC:                             3112.
 Df Model:                           9                                         

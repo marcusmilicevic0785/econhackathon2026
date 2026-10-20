@@ -2,36 +2,36 @@
   "nyc_equity": {
     "status": "estimated",
     "reason": "Exploratory tract association; HC3 intervals do not correct spatial dependence or ACS sampling error.",
-    "updated_utc": "2026-10-20T04:56:11.493237+00:00",
+    "updated_utc": "2026-10-20T06:11:30.654023+00:00",
     "n": 2190,
     "formula": "log_access ~ log_income + poverty_pct + youth_pct + older_pct + log_density + C(borough)"
   },
   "access_loneliness": {
     "status": "estimated_exploratory",
     "reason": "2023 CDC modeled outcome vs current facilities; ACS shares overlap model inputs; temporal mismatch and ecological inference prevent causal claims.",
-    "updated_utc": "2026-10-20T04:56:12.418772+00:00",
+    "updated_utc": "2026-10-20T06:11:31.640372+00:00",
     "n": 2190,
     "formula": "loneliness_pct ~ log_access + log_income + poverty_pct + youth_pct + older_pct + log_density + C(borough)"
   },
   "library_did": {
     "status": "not_estimated",
     "reason": "No verified branch-level treatment dates, matched untreated controls, and aligned repeated pre/post local outcomes. CDC PLACES is unsuitable for intervention evaluation. See docs/models/library_did.md.",
-    "updated_utc": "2026-10-20T04:56:19.655102+00:00"
+    "updated_utc": "2026-10-20T06:11:36.588289+00:00"
   },
   "atus": {
     "status": "incomplete_microdata",
     "reason": "Official multi-year archive unavailable; age 15\u201324 estimates are not generated. Offline mode: missing data/raw/atus/atussum-0324.zip",
-    "updated_utc": "2026-10-20T04:56:12.424445+00:00"
+    "updated_utc": "2026-10-20T06:11:31.652980+00:00"
   },
   "nyc_supplements": {
     "status": "downloaded_audited",
     "reason": "Library GIS and Parks acquisition geometries downloaded separately. Not added to FacDB exposure to avoid cross-source duplicates; acquisitions are not distinct parks.",
-    "updated_utc": "2026-10-20T04:56:17.359128+00:00"
+    "updated_utc": "2026-10-20T06:11:34.323657+00:00"
   },
   "panel": {
     "status": "complete",
     "reason": "NY 62 counties, 2018\u20132023: 372/372 usable current rows; 8/8 county/year FE models estimated; 0 source failures. NAICS 722515 is a snack/nonalcoholic beverage bar proxy; BFS measures applications, not formations.",
-    "updated_utc": "2026-10-20T04:56:14.094884+00:00",
+    "updated_utc": "2026-10-20T06:11:33.433242+00:00",
     "geography": "New York: all 62 counties",
     "years": [
       2018,
@@ -71,7 +71,7 @@
   "third_place_index": {
     "status": "downloaded_not_redistributed",
     "reason": "Compiled index redistribution permission unresolved. Source identifies OSM ODbL and public-domain Census inputs, without a separate compiled-index grant. Restricted local research only; do not redistribute archive or tract-level derivatives.",
-    "updated_utc": "2026-10-20T04:56:19.652389+00:00",
+    "updated_utc": "2026-10-20T06:11:36.584619+00:00",
     "source_url": "https://thirdplaceindex.org/data/third_place_index-main.zip",
     "archive_sha256": "247fc2417987942e4a1a5c45790b82603884ea230120e6258bc466523ac09297",
     "csv_member": "third_place_index-main/third_place_index_1.1.csv",
@@ -85,7 +85,7 @@
   "atus_published": {
     "status": "complete_published_only",
     "reason": "Official published all-15+ socializing/communicating series only, 2003-2024; no 2020 annual estimate. This does not complete the ages 15-24/T120101 microdata analysis.",
-    "updated_utc": "2026-10-20T04:56:12.632236+00:00",
+    "updated_utc": "2026-10-20T06:11:31.896193+00:00",
     "series_id": "TUU10101AA01013951",
     "series_page": "https://data.bls.gov/timeseries/TUU10101AA01013951",
     "series_dictionary": "https://download.bls.gov/pub/time.series/TU/tu.series",

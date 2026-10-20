@@ -4,7 +4,7 @@ Dep. Variable:         loneliness_pct   R-squared:                       0.633
 Model:                            OLS   Adj. R-squared:                  0.632
 Method:                 Least Squares   F-statistic:                     407.0
 Date:                Tue, 20 Oct 2026   Prob (F-statistic):               0.00
-Time:                        00:56:11   Log-Likelihood:                -4781.6
+Time:                        02:11:30   Log-Likelihood:                -4781.6
 No. Observations:                2190   AIC:                             9585.
 Df Residuals:                    2179   BIC:                             9648.
 Df Model:                          10                                         
