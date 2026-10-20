@@ -6,10 +6,16 @@ A research and teaching repository for investigating neighborhood facility suppl
 
 ## Start here
 
-- **Students:** read the [two-day challenge and policy objectives](docs/hackathon_brief.md), then choose a model notebook.
+- **Students:** start with the [graph-reading guide](docs/graph_guide.md) and [research worksheet](docs/student_worksheet.md), read the [two-day challenge and policy objectives](docs/hackathon_brief.md), then choose a model notebook.
 - **Researchers:** read the [research protocol](docs/research_protocol.md), [data dictionary](docs/data_dictionary.md), and [findings](docs/findings.md).
 - **Reviewers:** inspect [source checksums](data/manifest.json), [processed-data checksums](data/processed_manifest.json), [realized model status](outputs/model_status.json), and [QA records](outputs/qa).
 - **Organizers:** the brief includes proposed deliverables, a scoring rubric, implementation/evaluation requirements, and a comparison with earlier Pace EconHacks. It is a proposed 2026 teaching plan, not an official event announcement.
+
+## Learn with the graphs
+
+Use the time trend to describe change, the NYC scatterplots and income groups to challenge assumptions about access, and the coefficient plots to distinguish an estimated association from its uncertainty. County comparisons introduce denominators, fixed effects, lags, and robustness. Coverage and residual plots help students question the evidence before proposing policy.
+
+The [graph guide](docs/graph_guide.md) explains all 13 figures: how to read them, what they teach, how to use them in a research argument, what they cannot establish, and an exercise linked to the actual CSV. The [worksheet](docs/student_worksheet.md) offers starter, intermediate, and advanced routes plus instructor checkpoints. Students can begin with images and spreadsheets; coding is optional.
 
 ## Analyses
 

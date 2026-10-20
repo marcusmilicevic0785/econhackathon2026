@@ -73,6 +73,8 @@ The service assumption implies 1,920 site-hours; it does not predict attendance 
 
 ## Use evidence at your level
 
+Start with the [graph-reading guide](graph_guide.md) and [student worksheet](student_worksheet.md). They connect the repository's 13 figures to research questions, checkable calculations, uncertainty, and policy decisions. Choose the graphs that answer your team's question; presenting every figure is not required.
+
 Choose one main evidence route:
 
 - **Starter:** compare two or more neighborhoods using an attributed table or chart; identify a service barrier and explain what the comparison cannot establish.
