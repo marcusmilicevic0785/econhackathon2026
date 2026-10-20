@@ -1,0 +1,152 @@
+{
+  "data/processed/acs2023_nyc_b01001.csv": {
+    "sha256": "5e59389cac0fa2219a4ba807e73a331f03fd9a7f13e932d70eb2c7dae95cf153",
+    "bytes": 351042,
+    "generated_utc": "2026-10-20T04:56:19.657993+00:00",
+    "source_manifest_keys": [
+      "data/raw/acs/acsdt5y2023-b01001.dat"
+    ],
+    "transformation": "src/econhack; docs/data_dictionary.md"
+  },
+  "data/processed/acs2023_nyc_b01003.csv": {
+    "sha256": "2dd7889b98ea495045f1ff2bd774e4bbd62ba8bb5b2c3b01a8a44d56852d0d4a",
+    "bytes": 69713,
+    "generated_utc": "2026-10-20T04:56:19.658283+00:00",
+    "source_manifest_keys": [
+      "data/raw/acs/acsdt5y2023-b01003.dat"
+    ],
+    "transformation": "src/econhack; docs/data_dictionary.md"
+  },
+  "data/processed/acs2023_nyc_b17001.csv": {
+    "sha256": "59829321f9a7ad4d8135c8bac08128dd03ac1ca8802e9bf6ff38d3cc25fcb9c0",
+    "bytes": 88003,
+    "generated_utc": "2026-10-20T04:56:19.658889+00:00",
+    "source_manifest_keys": [
+      "data/raw/acs/acsdt5y2023-b17001.dat"
+    ],
+    "transformation": "src/econhack; docs/data_dictionary.md"
+  },
+  "data/processed/acs2023_nyc_b19013.csv": {
+    "sha256": "c4ac28770575c9f777cc044ad4b1f40ce84c2ee955487ec24abebf0b206d4dae",
+    "bytes": 78669,
+    "generated_utc": "2026-10-20T04:56:19.659314+00:00",
+    "source_manifest_keys": [
+      "data/raw/acs/acsdt5y2023-b19013.dat"
+    ],
+    "transformation": "src/econhack; docs/data_dictionary.md"
+  },
+  "data/processed/atus_published_annual.csv": {
+    "sha256": "85c3e8148fe4c8fd30f9f6dcc16bdfa3907701250ce7174a288b3944c7923a2e",
+    "bytes": 6810,
+    "generated_utc": "2026-10-20T04:56:19.659419+00:00",
+    "source_manifest_keys": [
+      "data/raw/atus_published/series_catalog_2023_2024.json",
+      "data/raw/atus_published/TUU10101AA01013951_2003_2012.json",
+      "data/raw/atus_published/TUU10101AA01013951_2013_2022.json",
+      "data/raw/atus_published/TUU10101AA01013951_2023_2024.json"
+    ],
+    "transformation": "src/econhack; docs/data_dictionary.md"
+  },
+  "data/processed/cdc_ny_loneliness.csv": {
+    "sha256": "6a7ab120b39fcc346d50a4f12d34814be77c538f0fc4b7a52bdc0795770883c4",
+    "bytes": 1446076,
+    "generated_utc": "2026-10-20T04:56:19.677603+00:00",
+    "source_manifest_keys": [
+      "data/raw/cdc/ny_loneliness_2025.json"
+    ],
+    "transformation": "src/econhack; docs/data_dictionary.md"
+  },
+  "data/processed/nyc_access.csv": {
+    "sha256": "dc4074b06a30882187ea6e042d7b4499e978d9dfe8259f533b4b74b058509318",
+    "bytes": 907823,
+    "generated_utc": "2026-10-20T04:56:19.679823+00:00",
+    "source_manifest_keys": [
+      "data/raw/acs/acsdt5y2023-b01003.dat",
+      "data/raw/acs/acsdt5y2023-b19013.dat",
+      "data/raw/acs/acsdt5y2023-b17001.dat",
+      "data/raw/acs/acsdt5y2023-b01001.dat",
+      "data/raw/nyc/gazetteer2023_ny_tracts.txt",
+      "data/raw/nyc/facilities.json",
+      "data/raw/cdc/ny_loneliness_2025.json",
+      "data/raw/nyc/libraries.geojson",
+      "data/raw/nyc/park_acquisitions.geojson"
+    ],
+    "transformation": "src/econhack; docs/data_dictionary.md"
+  },
+  "data/processed/nyc_loneliness.csv": {
+    "sha256": "6928c802abb6c832ac8bff646d3313261b7010d30831bc2d2e7ac9f8fdd256f8",
+    "bytes": 914304,
+    "generated_utc": "2026-10-20T04:56:19.694315+00:00",
+    "source_manifest_keys": [
+      "data/raw/acs/acsdt5y2023-b01003.dat",
+      "data/raw/acs/acsdt5y2023-b19013.dat",
+      "data/raw/acs/acsdt5y2023-b17001.dat",
+      "data/raw/acs/acsdt5y2023-b01001.dat",
+      "data/raw/nyc/gazetteer2023_ny_tracts.txt",
+      "data/raw/nyc/facilities.json",
+      "data/raw/cdc/ny_loneliness_2025.json",
+      "data/raw/nyc/libraries.geojson",
+      "data/raw/nyc/park_acquisitions.geojson"
+    ],
+    "transformation": "src/econhack; docs/data_dictionary.md"
+  },
+  "data/processed/nyc_selected_facilities.csv": {
+    "sha256": "769baebf371c0abfb74988553a8adb29a357a42598d6e26fdd9992dfe164f738",
+    "bytes": 826852,
+    "generated_utc": "2026-10-20T04:56:19.706437+00:00",
+    "source_manifest_keys": [
+      "data/raw/acs/acsdt5y2023-b01003.dat",
+      "data/raw/acs/acsdt5y2023-b19013.dat",
+      "data/raw/acs/acsdt5y2023-b17001.dat",
+      "data/raw/acs/acsdt5y2023-b01001.dat",
+      "data/raw/nyc/gazetteer2023_ny_tracts.txt",
+      "data/raw/nyc/facilities.json",
+      "data/raw/cdc/ny_loneliness_2025.json",
+      "data/raw/nyc/libraries.geojson",
+      "data/raw/nyc/park_acquisitions.geojson"
+    ],
+    "transformation": "src/econhack; docs/data_dictionary.md"
+  },
+  "data/processed/panel_acquisition.csv": {
+    "sha256": "ba0d4b44b5c7cb68f7d7cc4250683423f62c9a4c35c1b7dcf5acc35c3acc73fb",
+    "bytes": 2062,
+    "generated_utc": "2026-10-20T04:56:19.706594+00:00",
+    "source_manifest_keys": [
+      "data/raw/panel/bfs_county_apps_annual.xlsx",
+      "data/raw/panel/cbp/cbp18co.zip",
+      "data/raw/panel/cbp/cbp19co.zip",
+      "data/raw/panel/cbp/cbp20co.zip",
+      "data/raw/panel/cbp/cbp21co.zip",
+      "data/raw/panel/cbp/cbp22co.zip",
+      "data/raw/panel/cbp/cbp23co.zip",
+      "data/raw/panel/acs/acsdt5y2018-b01003.dat",
+      "data/raw/panel/acs/acsdt5y2019-b01003.dat",
+      "data/raw/panel/acs/acsdt5y2020-b01003.dat",
+      "data/raw/panel/acs/acsdt5y2021-b01003.dat",
+      "data/raw/panel/acs/acsdt5y2022-b01003.dat",
+      "data/raw/panel/acs/acsdt5y2023-b01003.dat"
+    ],
+    "transformation": "src/econhack; docs/data_dictionary.md"
+  },
+  "data/processed/panel_county_year.csv": {
+    "sha256": "6d12d46e09fc450fbad2841668025bb931a5772a25cb15d07823aa991db03ffe",
+    "bytes": 162369,
+    "generated_utc": "2026-10-20T04:56:19.707089+00:00",
+    "source_manifest_keys": [
+      "data/raw/panel/bfs_county_apps_annual.xlsx",
+      "data/raw/panel/cbp/cbp18co.zip",
+      "data/raw/panel/cbp/cbp19co.zip",
+      "data/raw/panel/cbp/cbp20co.zip",
+      "data/raw/panel/cbp/cbp21co.zip",
+      "data/raw/panel/cbp/cbp22co.zip",
+      "data/raw/panel/cbp/cbp23co.zip",
+      "data/raw/panel/acs/acsdt5y2018-b01003.dat",
+      "data/raw/panel/acs/acsdt5y2019-b01003.dat",
+      "data/raw/panel/acs/acsdt5y2020-b01003.dat",
+      "data/raw/panel/acs/acsdt5y2021-b01003.dat",
+      "data/raw/panel/acs/acsdt5y2022-b01003.dat",
+      "data/raw/panel/acs/acsdt5y2023-b01003.dat"
+    ],
+    "transformation": "src/econhack; docs/data_dictionary.md"
+  }
+}

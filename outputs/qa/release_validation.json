@@ -1,0 +1,40 @@
+{
+  "verified_utc": "2026-10-20T04:57:21.991385+00:00",
+  "python": "3.13.7",
+  "platform": "Darwin",
+  "tests": 95,
+  "failures": 0,
+  "errors": 0,
+  "notebooks": [
+    {
+      "notebook": "00_data_quality.ipynb",
+      "code_cells": 6,
+      "errors": 0
+    },
+    {
+      "notebook": "01_nyc_access_equity.ipynb",
+      "code_cells": 7,
+      "errors": 0
+    },
+    {
+      "notebook": "02_access_loneliness.ipynb",
+      "code_cells": 7,
+      "errors": 0
+    },
+    {
+      "notebook": "03_county_panel.ipynb",
+      "code_cells": 7,
+      "errors": 0
+    },
+    {
+      "notebook": "04_socializing_trend.ipynb",
+      "code_cells": 6,
+      "errors": 0
+    }
+  ],
+  "figures_png": 13,
+  "figures_svg": 13,
+  "tracked_files": 144,
+  "restricted_files_tracked": false,
+  "local_documentation_links": "passed"
+}

@@ -1,0 +1,36 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:         loneliness_pct   R-squared:                       0.633
+Model:                            OLS   Adj. R-squared:                  0.632
+Method:                 Least Squares   F-statistic:                     407.0
+Date:                Tue, 20 Oct 2026   Prob (F-statistic):               0.00
+Time:                        00:56:11   Log-Likelihood:                -4781.6
+No. Observations:                2190   AIC:                             9585.
+Df Residuals:                    2179   BIC:                             9648.
+Df Model:                          10                                         
+Covariance Type:                  HC3                                         
+===============================================================================================
+                                  coef    std err          z      P>|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------------------
+Intercept                      79.2388      2.172     36.487      0.000      74.982      83.495
+C(borough)[T.Brooklyn]         -1.7087      0.140    -12.163      0.000      -1.984      -1.433
+C(borough)[T.Manhattan]         1.3329      0.169      7.901      0.000       1.002       1.664
+C(borough)[T.Queens]            1.0129      0.154      6.571      0.000       0.711       1.315
+C(borough)[T.Staten Island]    -3.6615      0.236    -15.537      0.000      -4.123      -3.200
+log_access                     -0.1767      0.097     -1.821      0.069      -0.367       0.014
+log_income                     -3.5160      0.158    -22.229      0.000      -3.826      -3.206
+poverty_pct                     0.0257      0.007      3.592      0.000       0.012       0.040
+youth_pct                       0.1542      0.012     13.225      0.000       0.131       0.177
+older_pct                      -0.1089      0.008    -13.869      0.000      -0.124      -0.094
+log_density                    -0.0958      0.086     -1.110      0.267      -0.265       0.073
+==============================================================================
+Omnibus:                        8.251   Durbin-Watson:                   1.544
+Prob(Omnibus):                  0.016   Jarque-Bera (JB):                6.474
+Skew:                           0.012   Prob(JB):                       0.0393
+Kurtosis:                       2.735   Cond. No.                     1.51e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+[2] The condition number is large, 1.51e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.

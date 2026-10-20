@@ -1,0 +1,3 @@
+year,series_id,api_hours_per_day,official_table_hours_per_day,table_category,table_population,official_reference
+2003,TUU10101AA01013951,0.78,0.78,Socializing and communicating,"Total population, age 15 and over",https://www.bls.gov/news.release/archives/atus_09142004.pdf
+2024,TUU10101AA01013951,0.59,0.59,Socializing and communicating,"Total population, age 15 and over",https://www.bls.gov/news.release/archives/atus_06262025.htm

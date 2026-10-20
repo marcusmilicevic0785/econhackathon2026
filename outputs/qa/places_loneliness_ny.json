@@ -1,0 +1,34 @@
+{
+  "rows": 5289,
+  "columns": 24,
+  "key": [
+    "geoid"
+  ],
+  "duplicate_keys": 0,
+  "missing": {
+    "year": 0,
+    "stateabbr": 0,
+    "statedesc": 0,
+    "countyname": 0,
+    "countyfips": 0,
+    "locationname": 0,
+    "datasource": 0,
+    "category": 0,
+    "measure": 0,
+    "data_value_unit": 0,
+    "data_value_type": 0,
+    "data_value": 0,
+    "low_confidence_limit": 0,
+    "high_confidence_limit": 0,
+    "totalpopulation": 0,
+    "totalpop18plus": 0,
+    "geolocation": 0,
+    "locationid": 0,
+    "categoryid": 0,
+    "measureid": 0,
+    "datavaluetypeid": 0,
+    "short_question_text": 0,
+    "geoid": 0,
+    "loneliness_pct": 0
+  }
+}

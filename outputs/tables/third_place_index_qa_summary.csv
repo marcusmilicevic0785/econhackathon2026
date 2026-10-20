@@ -1,0 +1,12 @@
+metric,value
+source_rows,84414
+source_columns,55
+duplicate_geoid_rows,0
+category_total_mismatches,0
+missing_category_columns,0
+missing_geoid_2022_rows,3
+nyc_tpi_tracts,2327
+official_nyc_tracts,2327
+matched_tracts,2327
+official_unmatched_tracts,0
+tpi_nyc_unmatched_tracts,0

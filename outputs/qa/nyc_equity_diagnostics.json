@@ -1,0 +1,9 @@
+{
+  "n": 2190,
+  "r_squared": 0.4874081760161253,
+  "condition_number": 1506.1362712289517,
+  "covariance": "HC3",
+  "design_rank": 10,
+  "design_columns": 10,
+  "breusch_pagan_p": 1.52313998651154e-05
+}

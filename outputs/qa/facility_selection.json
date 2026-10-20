@@ -1,0 +1,28 @@
+{
+  "all_records": 34446,
+  "selected_records": 1541,
+  "duplicate_coordinate_category_removed": 10,
+  "invalid_coordinates": 3,
+  "categories": {
+    "park": 959,
+    "senior": 305,
+    "library": 223,
+    "community": 54
+  },
+  "taxonomy": {
+    "LIBRARY": "library",
+    "PUBLIC LIBRARY": "library",
+    "BRANCH LIBRARY": "library",
+    "COMMUNITY PARK": "park",
+    "NEIGHBORHOOD PARK": "park",
+    "FLAGSHIP PARK": "park",
+    "PLAYGROUND": "park",
+    "JOINTLY OPERATED PLAYGROUND": "park",
+    "CITY-STATE PARK": "park",
+    "STATE PARK": "park",
+    "RECREATION CENTER": "recreation",
+    "RECREATION CENTERS": "recreation",
+    "NYCHA COMMUNITY CENTER": "community",
+    "SENIOR CENTER": "senior"
+  }
+}

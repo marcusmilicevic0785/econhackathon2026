@@ -1,0 +1,4 @@
+{"status":"REQUEST_SUCCEEDED","responseTime":79,"message":["The catalog has been disabled for this request."],"Results":{
+"series":
+[{"seriesID":"TUU10101AA01013951","data":[{"year":"2024","period":"A01","periodName":"Annual","value":"0.59","footnotes":[{}]},{"year":"2023","period":"A01","periodName":"Annual","value":"0.57","footnotes":[{}]}]}]
+}}

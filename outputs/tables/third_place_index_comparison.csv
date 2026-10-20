@@ -1,0 +1,5 @@
+tpi_measure,official_measure,matched_tracts,spearman_rho,status
+total_places,within_tract_count,2327,0.242,descriptive
+total_places,nearby_400m,2327,0.195,descriptive
+total_places,nearby_800m,2327,0.24,descriptive
+total_places,nearby_1200m,2327,0.217,descriptive

@@ -1,0 +1,3 @@
+dataset,socrata_id,features,missing_geometries,invalid_geometries,geometry_types,used_as_regression_exposure
+libraries,feuq-due4,216,0,0,{'Point': 216},False
+park_acquisitions,enfh-gkve,2061,0,14,{'MultiPolygon': 2061},False

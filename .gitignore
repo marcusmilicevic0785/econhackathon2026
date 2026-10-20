@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+.env
+.cache/
+data/restricted/
+*.egg-info/
+build/
+dist/
+data/raw/acs/*.dat
+data/raw/atus/*.zip
+data/raw/panel/*.zip
+data/raw/panel/cbp/*.zip
+data/raw/panel/acs/*.dat

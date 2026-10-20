@@ -1,0 +1,12 @@
+term,vif
+Intercept,2347.622192
+C(borough)[T.Brooklyn],2.386242833
+C(borough)[T.Manhattan],2.231540769
+C(borough)[T.Queens],2.600972483
+C(borough)[T.Staten Island],1.665342975
+log_access,1.950869977
+log_income,3.09551338
+poverty_pct,3.160435591
+youth_pct,1.171512828
+older_pct,1.30467816
+log_density,1.766590485

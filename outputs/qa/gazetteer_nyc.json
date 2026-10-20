@@ -1,0 +1,18 @@
+{
+  "rows": 2327,
+  "columns": 8,
+  "key": [
+    "geoid"
+  ],
+  "duplicate_keys": 0,
+  "missing": {
+    "USPS": 0,
+    "geoid": 0,
+    "ALAND": 0,
+    "AWATER": 0,
+    "ALAND_SQMI": 0,
+    "AWATER_SQMI": 0,
+    "INTPTLAT": 0,
+    "INTPTLONG": 0
+  }
+}

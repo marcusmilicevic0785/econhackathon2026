@@ -1,0 +1,7 @@
+year,expected_counties,grid_counties,complete_current,complete_comparison,cbp_status_observed,cbp_status_observed_zero,cbp_status_suppressed,cbp_status_missing,cbp_status_missing_row,cbp_status_invalid,cbp_status_invalid_denominator,bfs_status_observed,bfs_status_observed_zero,bfs_status_suppressed,bfs_status_missing,bfs_status_missing_row,bfs_status_invalid,bfs_status_invalid_denominator,population_status_observed,population_status_observed_zero,population_status_suppressed,population_status_missing,population_status_missing_row,population_status_invalid,population_status_invalid_denominator
+2018,62,62,62,0,62,0,0,0,0,0,0,62,0,0,0,0,0,0,62,0,0,0,0,0,0
+2019,62,62,62,62,62,0,0,0,0,0,0,62,0,0,0,0,0,0,62,0,0,0,0,0,0
+2020,62,62,62,62,62,0,0,0,0,0,0,62,0,0,0,0,0,0,62,0,0,0,0,0,0
+2021,62,62,62,62,62,0,0,0,0,0,0,62,0,0,0,0,0,0,62,0,0,0,0,0,0
+2022,62,62,62,62,62,0,0,0,0,0,0,62,0,0,0,0,0,0,62,0,0,0,0,0,0
+2023,62,62,62,62,62,0,0,0,0,0,0,62,0,0,0,0,0,0,62,0,0,0,0,0,0

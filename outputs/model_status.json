@@ -1,0 +1,115 @@
+{
+  "nyc_equity": {
+    "status": "estimated",
+    "reason": "Exploratory tract association; HC3 intervals do not correct spatial dependence or ACS sampling error.",
+    "updated_utc": "2026-10-20T04:56:11.493237+00:00",
+    "n": 2190,
+    "formula": "log_access ~ log_income + poverty_pct + youth_pct + older_pct + log_density + C(borough)"
+  },
+  "access_loneliness": {
+    "status": "estimated_exploratory",
+    "reason": "2023 CDC modeled outcome vs current facilities; ACS shares overlap model inputs; temporal mismatch and ecological inference prevent causal claims.",
+    "updated_utc": "2026-10-20T04:56:12.418772+00:00",
+    "n": 2190,
+    "formula": "loneliness_pct ~ log_access + log_income + poverty_pct + youth_pct + older_pct + log_density + C(borough)"
+  },
+  "library_did": {
+    "status": "not_estimated",
+    "reason": "No verified branch-level treatment dates, matched untreated controls, and aligned repeated pre/post local outcomes. CDC PLACES is unsuitable for intervention evaluation. See docs/models/library_did.md.",
+    "updated_utc": "2026-10-20T04:56:19.655102+00:00"
+  },
+  "atus": {
+    "status": "incomplete_microdata",
+    "reason": "Official multi-year archive unavailable; age 15\u201324 estimates are not generated. Offline mode: missing data/raw/atus/atussum-0324.zip",
+    "updated_utc": "2026-10-20T04:56:12.424445+00:00"
+  },
+  "nyc_supplements": {
+    "status": "downloaded_audited",
+    "reason": "Library GIS and Parks acquisition geometries downloaded separately. Not added to FacDB exposure to avoid cross-source duplicates; acquisitions are not distinct parks.",
+    "updated_utc": "2026-10-20T04:56:17.359128+00:00"
+  },
+  "panel": {
+    "status": "complete",
+    "reason": "NY 62 counties, 2018\u20132023: 372/372 usable current rows; 8/8 county/year FE models estimated; 0 source failures. NAICS 722515 is a snack/nonalcoholic beverage bar proxy; BFS measures applications, not formations.",
+    "updated_utc": "2026-10-20T04:56:14.094884+00:00",
+    "geography": "New York: all 62 counties",
+    "years": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+    ],
+    "expected_rows": 372,
+    "usable_current_rows": 372,
+    "models_estimated": 8,
+    "failed_sources": [],
+    "tables": {
+      "panel_county_year": "outputs/tables/panel_county_year.csv",
+      "panel_acquisition": "outputs/tables/panel_acquisition.csv",
+      "panel_coverage": "outputs/tables/panel_coverage.csv",
+      "panel_annual_summary": "outputs/tables/panel_annual_summary.csv",
+      "panel_correlations_covariance": "outputs/tables/panel_correlations_covariance.csv",
+      "panel_coefficients": "outputs/tables/panel_coefficients.csv",
+      "panel_model_diagnostics": "outputs/tables/panel_model_diagnostics.csv",
+      "panel_coefficient_covariance": "outputs/tables/panel_coefficient_covariance.csv",
+      "panel_residuals": "outputs/tables/panel_residuals.csv",
+      "panel_model_samples": "outputs/tables/panel_model_samples.csv"
+    },
+    "input_mode": "processed_panel_offline_replay",
+    "processed_inputs": [
+      "data/processed/panel_county_year.csv",
+      "data/processed/panel_acquisition.csv"
+    ],
+    "caveats": [
+      "ACS annual 5-year estimates overlap; population uncertainty is not propagated.",
+      "County BFS counts have disclosure-avoidance noise and IRS processing-year boundaries.",
+      "Observational associations do not identify cafe effects or actual business births."
+    ]
+  },
+  "third_place_index": {
+    "status": "downloaded_not_redistributed",
+    "reason": "Compiled index redistribution permission unresolved. Source identifies OSM ODbL and public-domain Census inputs, without a separate compiled-index grant. Restricted local research only; do not redistribute archive or tract-level derivatives.",
+    "updated_utc": "2026-10-20T04:56:19.652389+00:00",
+    "source_url": "https://thirdplaceindex.org/data/third_place_index-main.zip",
+    "archive_sha256": "247fc2417987942e4a1a5c45790b82603884ea230120e6258bc466523ac09297",
+    "csv_member": "third_place_index-main/third_place_index_1.1.csv",
+    "qa_status": "passed",
+    "comparison_status": "descriptive",
+    "official_input_sha256": "dc4074b06a30882187ea6e042d7b4499e978d9dfe8259f533b4b74b058509318",
+    "aggregate_figure_written": true,
+    "public_output_directory": "outputs/tables",
+    "output_policy": "Schema, inventory, QA counts and pooled correlations only; no GEOIDs or tract-level values."
+  },
+  "atus_published": {
+    "status": "complete_published_only",
+    "reason": "Official published all-15+ socializing/communicating series only, 2003-2024; no 2020 annual estimate. This does not complete the ages 15-24/T120101 microdata analysis.",
+    "updated_utc": "2026-10-20T04:56:12.632236+00:00",
+    "series_id": "TUU10101AA01013951",
+    "series_page": "https://data.bls.gov/timeseries/TUU10101AA01013951",
+    "series_dictionary": "https://download.bls.gov/pub/time.series/TU/tu.series",
+    "activity_label": "Socializing and communicating (BLS published aggregate)",
+    "population": "U.S. civilian noninstitutional population age 15 and over; all persons; all days",
+    "age_groups": [
+      "15+"
+    ],
+    "years": [
+      2003,
+      2024
+    ],
+    "observed_years": 21,
+    "missing_years": [
+      2020
+    ],
+    "input_mode": "processed_aggregate_offline_replay",
+    "youth_microdata_complete": false,
+    "definition_verification": "API endpoints reconciled to independently inspected 2003 and 2024 official BLS Table 1 total-population values; no API catalog title is assumed.",
+    "caveats": [
+      "Published aggregate is not equivalent to detailed T120101 or total face-to-face interaction.",
+      "Published hours are rounded; minutes are a unit conversion, not additional precision.",
+      "No annual survey confidence intervals or regression inference are supplied.",
+      "All-15+ results cannot establish the trend for ages 15-24."
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "moran_i": 0.5018547583689366,
+  "expected_i": -0.00045682960255824577,
+  "permutation_p_two_sided": 0.002,
+  "permutations": 499,
+  "seed": 2026,
+  "neighbors": 8,
+  "weighting": "row-standardized directed nearest neighbors",
+  "grid_cluster_count": 226,
+  "caveat": "Approximate 2 km geographic tiles; grid clustering is sensitivity, not a guarantee of corrected spatial uncertainty."
+}

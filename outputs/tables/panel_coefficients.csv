@@ -1,0 +1,11 @@
+model,term,coefficient,std_error,p_value,ci_lower,ci_upper,nobs,county_clusters,cluster_df,covariance,outcome,county_fe,year_fe
+current_all_years,proxy_establishments_per_10k,2.563060195,1.424775703,0.07697829593,-0.2859549036,5.412075294,372,62,61,cluster_county,applications_per_10k,True,True
+current_matched_all_years,proxy_establishments_per_10k,2.830943477,2.929594077,0.3376966159,-3.027141934,8.689028887,310,62,61,cluster_county,applications_per_10k,True,True
+lag1_matched_all_years,proxy_establishments_per_10k_lag1,3.621892531,3.079702114,0.2441431838,-2.536352452,9.780137513,310,62,61,cluster_county,applications_per_10k,True,True
+joint_matched_all_years,proxy_establishments_per_10k,0.8228811475,1.243509724,0.5106294549,-1.663670224,3.309432519,310,62,61,cluster_county,applications_per_10k,True,True
+joint_matched_all_years,proxy_establishments_per_10k_lag1,3.210881962,2.966550429,0.283351767,-2.721102242,9.142866167,310,62,61,cluster_county,applications_per_10k,True,True
+current_exclude_2020_2021,proxy_establishments_per_10k,2.401048693,1.594617419,0.1372998844,-0.787585908,5.589683293,248,62,61,cluster_county,applications_per_10k,True,True
+current_matched_exclude_2020_2021,proxy_establishments_per_10k,4.390097055,7.987304141,0.5845769376,-11.58150469,20.3616988,124,62,61,cluster_county,applications_per_10k,True,True
+lag1_matched_exclude_2020_2021,proxy_establishments_per_10k_lag1,4.883423359,4.079914143,0.2359599904,-3.274869187,13.04171591,124,62,61,cluster_county,applications_per_10k,True,True
+joint_matched_exclude_2020_2021,proxy_establishments_per_10k,-2.594158606,4.198452363,0.5389515589,-10.98948297,5.80116576,124,62,61,cluster_county,applications_per_10k,True,True
+joint_matched_exclude_2020_2021,proxy_establishments_per_10k_lag1,6.223337203,4.479623248,0.169806065,-2.734223095,15.1808975,124,62,61,cluster_county,applications_per_10k,True,True

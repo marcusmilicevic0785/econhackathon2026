@@ -1,0 +1,3 @@
+model,coefficient_log_access,ci_lower,ci_upper,n
+borough_only,1.257703342,1.026808886,1.488597799,2190
+adjusted,-0.1767191814,-0.3669483763,0.01351001355,2190

@@ -1,0 +1,26 @@
+{
+  "features": 216,
+  "first_record_fields": [
+    ":created_at",
+    ":id",
+    ":updated_at",
+    ":version",
+    "bbl",
+    "bin",
+    "borocode",
+    "city",
+    "housenum",
+    "name",
+    "streetname",
+    "system",
+    "url",
+    "x",
+    "y",
+    "zip"
+  ],
+  "geometry_types": {
+    "Point": 216
+  },
+  "missing_geometries": 0,
+  "invalid_geometries": 0
+}
