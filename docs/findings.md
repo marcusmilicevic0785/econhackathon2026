@@ -8,7 +8,7 @@ The official inventory contains **34,446 facility records**. The conservative al
 
 ACS/Gazetteer keys match across **2,327 NYC tracts**. The regression retains **2,190** populated complete cases. Exact exclusions and all missingness counts are in [QA](../outputs/qa). Nearby supply counts sites within 800 metres of a tract internal point, rather than walking distance from every resident.
 
-The median nearby count by ascending tract-income quintile is **8, 5, 4, 3, 8**. This nonmonotonic pattern does not support a blanket statement that richer neighborhoods always have more selected public facilities. Private/commercial third places, fees, hours, accessibility, capacity, and whether residents feel welcome are outside this exposure.
+The median nearby count by ascending tract-income quintile is **8, 5, 4, 3, 5**. This nonmonotonic pattern does not support a blanket statement that richer neighborhoods always have more selected public facilities. Private/commercial third places, fees, hours, accessibility, capacity, and whether residents feel welcome are outside this exposure.
 
 In the adjusted log(1+access) model, the income coefficient is **−0.069** with approximate spatial-grid-clustered 95% interval **[−0.207, 0.069]**. Poverty has a positive conditional coefficient, contrary to the initial negative hypothesis. Youth share (15–24) has coefficient **−0.00567** per percentage point, spatial interval **[−0.01016, −0.00119]**; the older-adult share also has a negative conditional association. These coefficients concern transformed supply, conditional on borough/density and other covariates. They do not measure an effect of income, age, or poverty on provision.
 
