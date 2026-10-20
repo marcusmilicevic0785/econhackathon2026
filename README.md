@@ -51,6 +51,18 @@ For source acquisition/rebuild, run `econhack run` with internet access. This fe
 
 Run one module with `econhack run --model nyc`, `--model panel`, `--model atus`, `--model supplements`, or `--model third_place_index`. `--offline` disables downloads. Model estimation and notebook execution need no Census API key. The source API returned HTML “Missing Key” in this session; official ACS/CBP bulk downloads avoid that dependency. Credentials are never written to manifests.
 
+### If the installed command cannot find the project
+
+Some macOS environments mark the editable-install `.pth` registration file as hidden, which Python can skip. If `econhack` reports `ModuleNotFoundError: econhack` despite a successful installation, run from this repository's root with an explicit source path:
+
+```sh
+PYTHONPATH=src .venv/bin/python -m econhack.cli verify
+PYTHONPATH=src .venv/bin/python -m econhack.cli run --offline
+PYTHONPATH=src .venv/bin/python scripts/build_notebooks.py --execute
+```
+
+These commands use the repository's code and the same pinned environment. The notebook setup also selects the repository source explicitly.
+
 ### Refreshing data
 
 Cached inputs are immutable and hash-checked. Keep raw files and manifests together. For a fresh vintage, use a new checkout or archive the existing data/manifests/results before removing caches; rerun acquisition and review QA/definition changes. To force ACS extraction from existing bulk sources, archive/remove only the corresponding `data/processed/acs2023_nyc_*.csv` and processed manifest as a deliberate regeneration step. Never hand-edit datasets to make a model pass.
