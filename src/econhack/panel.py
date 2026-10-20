@@ -1,5 +1,6 @@
 """New York county panel: employer snack/beverage establishments and applications."""
 
+import logging
 import os
 import re
 from itertools import combinations
@@ -11,6 +12,8 @@ import pandas as pd
 import statsmodels.api as sm
 
 from .common import PROCESSED, ROOT, fetch, record_status, save_figure, save_table
+
+logger = logging.getLogger(__name__)
 
 YEARS = tuple(range(2018, 2024))
 NY_COUNTIES = tuple(f"36{county:03d}" for county in range(1, 124, 2))
@@ -105,7 +108,7 @@ def parse_bfs(path, years=YEARS):
     with pd.ExcelFile(path, engine="openpyxl") as workbook:
         for sheet in workbook.sheet_names:
             preview = pd.read_excel(workbook, sheet_name=sheet, header=None, nrows=40, dtype=str)
-            for position, row in preview.iterrows():
+            for position, (_, row) in enumerate(preview.iterrows()):
                 names = {_column(value) for value in row.dropna()}
                 if "countycode" in names and any(re.fullmatch(r"ba\d{4}", name) for name in names):
                     data = pd.read_excel(workbook, sheet_name=sheet, header=int(position), dtype=str,
@@ -122,7 +125,7 @@ def parse_bfs(path, years=YEARS):
                         values, status, raw = _counts(data[f"ba{year}"])
                         pieces.append(pd.DataFrame({
                             "county_fips": data.county_fips, "year": year,
-                            "county_name": data["county"] if "county" in data else data.county_fips,
+                            "county_name": data.get("county", data.county_fips),
                             "business_applications": values, "bfs_status": status,
                             "bfs_applications_raw": raw, "bfs_source_url": BFS_URL,
                         }))
@@ -149,11 +152,14 @@ def parse_population(path, year):
         values, status, raw = _counts(selected[estimate])
         status.loc[values.eq(0)] = "invalid_denominator"
         values = values.where(values.gt(0))
-        margins = pd.to_numeric(selected[margin], errors="coerce") if margin else np.nan
+        margins = (
+            pd.to_numeric(selected[margin], errors="coerce")
+            if margin else pd.Series(np.nan, index=selected.index)
+        )
         pieces.append(pd.DataFrame({
             "county_fips": selected.geoid.str[-5:], "year": year,
             "population_acs5": values, "population_status": status, "population_raw": raw,
-            "population_moe90": margins.where(margins.ge(0)) if margin else margins,
+            "population_moe90": margins.where(margins.ge(0)),
             "population_source_url": acs_url(year),
         }))
     result = _unique(pd.concat(pieces, ignore_index=True), "ACS")
@@ -201,10 +207,10 @@ def coverage_table(panel):
     return pd.DataFrame(rows)
 
 
-def _fixed_effects(data):
+def _fixed_effects(data) -> pd.DataFrame:
     categories = data[["county_fips", "year"]].astype(str)
     effects = pd.get_dummies(categories, columns=["county_fips", "year"], drop_first=True, dtype=float)
-    return sm.add_constant(effects, has_constant="add").astype(float)
+    return pd.DataFrame(sm.add_constant(effects, has_constant="add")).astype(float)
 
 
 def residualize(data, columns):
@@ -508,6 +514,7 @@ def _acquire_panel():
             else:
                 population_frames.append(data)
         except Exception as error:
+            logger.exception("Panel source acquisition failed: %s (%s)", source, year)
             acquisition.append({"source": source, "year": year, "url": url, "raw_relative_path": relative_path,
                                 "status": "failed", "rows": 0, "reason": f"{type(error).__name__}: {error}"})
     cbp = pd.concat(cbp_frames, ignore_index=True) if cbp_frames else pd.DataFrame(
