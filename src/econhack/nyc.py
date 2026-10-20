@@ -3,14 +3,23 @@
 import json
 from urllib.parse import urlencode
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from scipy.spatial import cKDTree
 import statsmodels.formula.api as smf
+from scipy.spatial import KDTree
 
-from .common import (RAW, PROCESSED, OUTPUTS, fetch, save_table, save_figure,
-                     record_status, profile, regression_outputs, write_json)
-import matplotlib.pyplot as plt
+from .common import (
+    OUTPUTS,
+    PROCESSED,
+    fetch,
+    profile,
+    record_status,
+    regression_outputs,
+    save_figure,
+    save_table,
+    write_json,
+)
 
 FEDERAL = "US federal government data; public domain; attribute originating agency."
 NYC_LICENSE = "NYC Open Data terms https://opendata.cityofnewyork.us/overview/#termsofuse; provided as-is."
@@ -117,7 +126,7 @@ def nearby_counts(tracts, facilities, distance_m):
     valid = facilities[facilities.valid_coordinate]
     if valid.empty:
         raise ValueError("No valid facility coordinates")
-    tree = cKDTree(sphere_coordinates(valid.latitude, valid.longitude))
+    tree = KDTree(sphere_coordinates(valid.latitude, valid.longitude), leafsize=16)
     radius = 2 * np.sin(distance_m / (2 * 6371008.8))
     return tree.query_ball_point(sphere_coordinates(tracts.INTPTLAT, tracts.INTPTLONG), radius, return_length=True)
 
@@ -162,7 +171,8 @@ def spatial_sensitivity(sample, formula, model_name):
                             "ci_lower": intervals.iloc[:, 0].values, "ci_upper": intervals.iloc[:, 1].values,
                             "spatial_clusters": groups.nunique()}), model_name + "_spatial_cluster_sensitivity")
     positions = sphere_coordinates(sample.INTPTLAT, sample.INTPTLONG)
-    neighbors = cKDTree(positions).query(positions, k=9)[1][:, 1:]
+    _, neighbor_indices = KDTree(positions, leafsize=16).query(positions, k=9)
+    neighbors = np.asarray(neighbor_indices, dtype=np.intp)[:, 1:]
     residuals = np.asarray(fitted.resid) - np.mean(fitted.resid)
 
     def statistic(values):
