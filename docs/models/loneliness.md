@@ -6,10 +6,10 @@ CDC PLACES 2025 tract dataset `cwsq-ngmh` supplies crude modeled adult `LONELINE
 
 Question: do NYC tracts with more selected nearby facilities have different modeled prevalence after adjustment? Hypothesis: a negative coefficient on access. The coefficient is descriptive and subject to confounding and reverse causality.
 
-\[
+$$
 Loneliness_i=\alpha+\beta\log(1+A_i)+\theta_1\log(MHI_i)+\theta_2 Poverty_i+
 \theta_3 Youth_i+\theta_4 Older_i+\theta_5\log(1+Density_i)+\gamma_{borough(i)}+u_i.
-\]
+$$
 
 The outcome is percentage points; `β` is the change per natural-log unit of (1+selected-site count). This is equal-tract OLS, with HC3 uncertainty conditional on the modeled outcome. A borough-only specification shows how adjustment changes the association. Join exact 11-character Census GEOIDs one-to-one and publish model attrition; missing estimates never become zero.
 

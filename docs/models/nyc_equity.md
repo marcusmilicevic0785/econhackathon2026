@@ -14,10 +14,10 @@ The main radius measure can cross tract boundaries. Within-tract counts are an a
 
 ## Formula and units
 
-\[
+$$
 \log(1+A_i)=\alpha+\beta_1\log(MHI_i)+\beta_2 Poverty_i+
 \beta_3 Youth_i+\beta_4 Older_i+\beta_5\log(1+Density_i)+\gamma_{borough(i)}+\epsilon_i.
-\]
+$$
 
 - `A`: selected sites within 800 m, a count; alternatives: 400/1,200 m.
 - `MHI`: median household income in 2023 dollars; no averaging of tract medians.

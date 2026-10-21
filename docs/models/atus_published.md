@@ -66,12 +66,20 @@ Scope is fixed at 2003–2024; 2025 is not silently appended.
 BLS has already applied survey weights to its published average over all
 eligible people, including people reporting zero time in the activity. Do
 not reweight the annual API values or interpret them as participant averages.
-`minutes_per_day = 60 * published_hours_per_day`. BLS rounds the published
+$$
+m_t=60h_t,
+$$
+
+where $m_t$ is minutes per day and $h_t$ is published hours per day. BLS rounds the published
 hours: conversion to minutes does not recover unrounded diary-level precision.
 
 The separate descriptive regression is
-`minutes_per_day = intercept + slope * (year - 2003) + residual`, fit by
-ordinary least squares to the 21 non-2020 annual points with equal year
+
+$$
+m_t=\alpha+\beta(t-2003)+\varepsilon_t,
+$$
+
+fit by ordinary least squares to the 21 non-2020 annual points with equal year
 weights. Its coefficient table includes both terms, units, sample size,
 residual degrees of freedom, R-squared, and RMSE; fitted values/residuals are
 exported. This is a summary of temporal direction, with a possible pandemic

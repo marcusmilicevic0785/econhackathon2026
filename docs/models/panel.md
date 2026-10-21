@@ -58,8 +58,8 @@ All acquisitions use the shared `fetch` contract and official bulk sources;
 no API key or API request is needed. Census API endpoints can return HTTP 200
 with HTML “Missing Key,” which is not valid data. Files are cached as
 `panel/cbp/cbp{yy}co.zip`, `panel/acs/acsdt5y{year}-b01003.dat`, and
-`panel/bfs_county_apps_annual.xlsx` under the shared raw-data root. Main owns
-live acquisition/execution; unit tests use small synthetic files and no network.
+`panel/bfs_county_apps_annual.xlsx` under the shared raw-data root. The CLI runs
+acquisition and analysis; unit tests use small synthetic files and no network.
 
 ## Denominators, missingness, and timing
 
