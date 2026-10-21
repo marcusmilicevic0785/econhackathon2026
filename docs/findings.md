@@ -50,6 +50,6 @@ The BLS microdata ZIP returned HTTP 403 in this environment. The project include
 
 The library DiD/event study remains **not estimated**: no verified event ledger, credible controls, and aligned direct pre/post outcome panel were established. Current directories and CDC modeled estimates do not satisfy that requirement. The [future evaluation gate](models/library_did.md) explains the evidence needed.
 
-## Policy use
+## What's missing
 
-Use this project to identify evidence gaps, compare candidate neighborhoods, and design a pilot evaluation. Combine administrative supply with opening hours, prices, youth/older-adult entry rules, mobility barriers, utilization, community consultation, and directly measured social connection before choosing a location or claiming benefits. The student brief turns these gaps into explicit implementation and evaluation requirements.
+The facility counts don't include verified opening hours, prices, entry rules, mobility barriers or use. These files alone can't establish whether a place is accessible in practice or whether it improves social connection.
