@@ -11,7 +11,6 @@ Data, graphs and code I've put together for Pace's EconHack 2026. The focus is t
 | **[Data dictionary](docs/data_dictionary.md)** | Variable names, definitions, units and sources |
 | [Graphs](outputs/figures) | PNG images and SVG versions for slides |
 | [Results tables](outputs/tables) | Regression estimates, confidence intervals and summary statistics |
-| [Findings](docs/findings.md) | A summary of the current results and their limits |
 | [Notebooks](notebooks) | The calculations behind the analyses |
 | [Methods overview](docs/research_protocol.md) | Equations, samples and the main data limitations |
 
@@ -75,7 +74,7 @@ For a fresh source vintage, use a separate checkout or archive the existing data
 ```text
 data/processed/    CSVs and a file-by-file guide
 data/raw/          Included source snapshots
-docs/              Graph guide, definitions, findings and methods
+docs/              Graph guide, definitions and methods
 notebooks/         Executed analysis notebooks
 outputs/figures/   PNG and SVG graphs
 outputs/tables/    Results and summary tables
