@@ -1,5 +1,5 @@
 {
-  "verified_utc": "2026-10-20T06:12:51.022932+00:00",
+  "verified_utc": "2026-10-21T18:35:30.547034+00:00",
   "python": "3.13.7",
   "platform": "Darwin",
   "tests": 95,
@@ -34,7 +34,7 @@
   ],
   "figures_png": 13,
   "figures_svg": 13,
-  "tracked_files": 146,
+  "tracked_files": 144,
   "restricted_files_tracked": false,
   "local_documentation_links": "passed"
 }

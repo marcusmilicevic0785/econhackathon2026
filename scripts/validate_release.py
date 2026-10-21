@@ -26,7 +26,8 @@ def main():
         notebook_checks.append({"notebook": path.name, "code_cells": len(code), "errors": len(errors)})
     if len(notebook_checks) != 5:
         raise ValueError("Expected five executed companion notebooks")
-    for path in [ROOT / "README.md", *(ROOT / "docs").rglob("*.md")]:
+    for path in [ROOT / "README.md", *(ROOT / "docs").rglob("*.md"),
+                 *(ROOT / "data").rglob("README.md")]:
         for target in re.findall(r"\]\(([^)]+)\)", path.read_text()):
             if target.startswith(("https://", "http://", "mailto:", "#")):
                 continue
