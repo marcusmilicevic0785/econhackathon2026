@@ -1,98 +1,87 @@
-# EconHack 2026 · Third spaces, measured carefully
+# EconHack 2026 · Third spaces
 
-A research and teaching repository for investigating neighborhood facility supply, social connection, and local economic activity. Every estimate comes from downloaded source records. Hypotheses are allowed to fail; missing data never become invented observations.
+Data, graphs and code I've put together for Pace's EconHack 2026. The focus is third spaces, who has nearby facilities, and how those patterns relate to social connection and local business activity.
 
-![NYC access equity](outputs/figures/nyc_access_equity.png)
+## What's here?
 
-## Start here
+| Resource | What you'll find |
+| --- | --- |
+| **[Graph guide](docs/graph_guide.md)** | Each graph explained briefly, with links to its data and results |
+| **[Processed data](data/processed/README.md)** | A file-by-file guide to the CSVs you can download and use |
+| **[Data dictionary](docs/data_dictionary.md)** | Variable names, definitions, units and sources |
+| [Graphs](outputs/figures) | PNG images and SVG versions for slides |
+| [Results tables](outputs/tables) | Regression estimates, confidence intervals and summary statistics |
+| [Findings](docs/findings.md) | A summary of the current results and their limits |
+| [Notebooks](notebooks) | The calculations behind the analyses |
+| [Methods overview](docs/research_protocol.md) | Equations, samples and the main data limitations |
 
-- **Students:** start with the [graph-reading guide](docs/graph_guide.md) and [research worksheet](docs/student_worksheet.md), read the [two-day challenge and policy objectives](docs/hackathon_brief.md), then choose a model notebook.
-- **Researchers:** read the [research protocol](docs/research_protocol.md), [data dictionary](docs/data_dictionary.md), and [findings](docs/findings.md).
-- **Reviewers:** inspect [source checksums](data/manifest.json), [processed-data checksums](data/processed_manifest.json), [realized model status](outputs/model_status.json), and [QA records](outputs/qa).
-- **Organizers:** the brief includes proposed deliverables, a scoring rubric, implementation/evaluation requirements, and a comparison with earlier Pace EconHacks. It is a proposed 2026 teaching plan, not an official event announcement.
+The CSVs open in Excel, Google Sheets, R or Python. Figures and results are already saved in the repository. The notebooks and source code are there if you want to check or change the analysis.
 
-## Learn with the graphs
+## What the data cover
 
-Use the time trend to describe change, the NYC scatterplots and income groups to challenge assumptions about access, and the coefficient plots to distinguish an estimated association from its uncertainty. County comparisons introduce denominators, fixed effects, lags, and robustness. Coverage and residual plots help students question the evidence before proposing policy.
+| Topic | Data | Main dataset |
+| --- | --- | --- |
+| Nearby public facilities in NYC | Census demographics and NYC facilities | [NYC access](data/processed/nyc_access.csv) |
+| Access and loneliness | NYC access matched with CDC modeled adult loneliness | [NYC loneliness](data/processed/nyc_loneliness.csv) |
+| Café-like establishments and business applications | Census data for all 62 NY counties, 2018–2023 | [County-year panel](data/processed/panel_county_year.csv) |
+| Time spent socializing | BLS published national estimates, age 15+, 2003–2024; 2020 missing | [Annual time-use data](data/processed/atus_published_annual.csv) |
 
-The [graph guide](docs/graph_guide.md) explains all 13 figures: how to read them, what they teach, how to use them in a research argument, what they cannot establish, and an exercise linked to the actual CSV. The [worksheet](docs/student_worksheet.md) offers starter, intermediate, and advanced routes plus instructor checkpoints. Students can begin with images and spreadsheets; coding is optional.
+The [processed-data guide](data/processed/README.md) also lists the Census extracts, facility records and other supporting files.
 
-## Analyses
+![NYC access and income](outputs/figures/nyc_access_equity.png)
 
-| Question | Data and unit | Implementation and outputs | Interpretation |
-|---|---|---|---|
-| Who has nearby third-space supply in NYC? | ACS 2019–2023, Census Gazetteer, current NYC FacDB; census tract | [Methods](docs/models/nyc_equity.md), [notebook](notebooks/01_nyc_access_equity.ipynb), [coefficients](outputs/tables/nyc_equity_coefficients.csv) | Exploratory association; 400/800/1,200 m sensitivity, HC3 and spatial-grid clustered intervals |
-| Is access associated with modeled loneliness? | CDC PLACES 2025, 2023 adult outcome; NYC tract | [Methods](docs/models/loneliness.md), [notebook](notebooks/02_access_loneliness.ipynb), [coefficients](outputs/tables/access_loneliness_coefficients.csv) | Ecological, generated outcome; exposure is later than outcome; no causal effect |
-| Are café-like establishments associated with business applications? | CBP NAICS 722515, BFS annual county applications, ACS population; all 62 NY counties, 2018–2023 | [Methods](docs/models/panel.md), [notebook](notebooks/03_county_panel.ipynb), [coefficients](outputs/tables/panel_coefficients.csv) | Eight county/year FE specifications with county-clustered uncertainty; applications are not business births |
-| How has socializing time changed? | BLS ATUS official series; national time trend | [Microdata design](docs/models/atus.md), [published-series fallback](docs/models/atus_published.md), [notebook](notebooks/04_socializing_trend.ipynb) | Published all-person series can run when archive access fails; age 15–24 microdata remains explicitly incomplete in that case |
-| How does an independent index compare? | Third Place Index and official NYC supply; matched tracts | [Methods/rights](docs/models/third_place_index.md), [aggregate QA](outputs/tables/third_place_index_qa_summary.csv) | Local-only index archive; public schema/aggregate comparisons only |
-| Did a library intervention cause a change? | Requires credible treatment dates and aligned pre/post direct outcomes | [Design and evidence gate](docs/models/library_did.md) | **Not estimated**; no invented event-study chart |
+## A few limits to keep in mind
 
-The NYC exposure is a conservative selected-facility count within straight-line distance of each tract's Census internal point. It does not measure walking access, capacity, welcome, prices, opening hours, or actual social participation. Separate library/park geometry supplements are audited and retained without double-counting them in FacDB.
+- Nearby facilities are counted within 800 metres of a Census tract reference point, using straight-line distance. That doesn't tell us about opening hours, cost, walking routes or whether a space welcomes a particular age group.
+- CDC loneliness figures are modeled adult area estimates. They are not youth-specific observations, and the facility snapshot is later than the outcome year.
+- Café-like establishments are a broader category than cafés. Business applications are not businesses that opened.
+- These are exploratory associations, not causal effects. Census five-year estimates, spatial dependence and source timing also affect interpretation.
 
-## Reproduce in five steps
+The independent Third Place Index is covered in a [separate comparison](docs/models/third_place_index.md). Its row-level data are not redistributed here. The age-15–24 time-use analysis is incomplete because the microdata download was blocked. A library intervention study is [not estimated](docs/models/library_did.md) because the necessary verified pre/post data weren't established. The [status file](outputs/model_status.json) records what ran.
 
-Use Python 3.13 for the tested lock. Python ≥3.11 is allowed by the package declaration, but other runtimes require revalidation. Tested locally on macOS; a GitHub workflow is configured to check Linux.
+## Sources
+
+The main sources are BLS ATUS, Census ACS/CBP/BFS, CDC PLACES and NYC Open Data. Source links and definitions are in the [model notes](docs/models). The [source manifest](data/manifest.json) records download URLs, dates and file hashes; the [processed manifest](data/processed_manifest.json) records the CSV lineage and hashes.
+
+Small official source snapshots are in [raw data](data/raw). Large national files are left out of GitHub; the download code is included. Reuse terms are in [data licenses](DATA_LICENSES.md). No software license has been selected for the project code.
+
+<details>
+<summary><strong>Run the analysis yourself</strong></summary>
+
+Use Python 3.13 for the tested environment. From the repository folder:
 
 ```sh
 python3.13 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.lock
 python -m pip install --no-deps -e .
-econhack verify
+PYTHONPATH=src python -m econhack.cli verify
 python -m pytest -q
-econhack run --offline
-python scripts/build_notebooks.py --execute
+PYTHONPATH=src python -m econhack.cli run --offline
+PYTHONPATH=src python scripts/build_notebooks.py --execute
 ```
 
-The public repository includes small official raw responses plus processed extracts for replay. Large nationwide ACS files and CBP/ATUS archives are omitted from Git; URLs, timestamps, sizes, SHA-256 hashes, parsers, and extraction rules remain available. `econhack verify` checks all files present plus every required distributed processed extract and reports omitted large inputs separately.
+The explicit source path also avoids an editable-install issue found on some Macs. Offline runs use the included processed extracts. GitHub Actions checks tests, file integrity, offline reproduction and notebook execution.
 
-For source acquisition/rebuild, run `econhack run` with internet access. This fetches absent raw inputs, validates source types and hashes, and estimates each model independently. **A blocked source is reported in the status registry**, and the BLS published-series fallback does not masquerade as a completed youth microdata analysis. Data needing redistribution clarification remain in ignored `data/restricted/`. See [data rights](DATA_LICENSES.md).
+For source acquisition/rebuild, omit `--offline`. Missing source files are downloaded where available, while existing caches remain hash-checked. To run one module, add `--model nyc`, `panel`, `atus`, `supplements` or `third_place_index`.
 
-Run one module with `econhack run --model nyc`, `--model panel`, `--model atus`, `--model supplements`, or `--model third_place_index`. `--offline` disables downloads. Model estimation and notebook execution need no Census API key. The source API returned HTML “Missing Key” in this session; official ACS/CBP bulk downloads avoid that dependency. Credentials are never written to manifests.
+For a fresh source vintage, use a separate checkout or archive the existing data, manifests and results together before replacing caches. A refresh can change definitions, coverage and results. Keep the originals.
 
-### If the installed command cannot find the project
+</details>
 
-Some macOS environments mark the editable-install `.pth` registration file as hidden, which Python can skip. If `econhack` reports `ModuleNotFoundError: econhack` despite a successful installation, run from this repository's root with an explicit source path:
-
-```sh
-PYTHONPATH=src .venv/bin/python -m econhack.cli verify
-PYTHONPATH=src .venv/bin/python -m econhack.cli run --offline
-PYTHONPATH=src .venv/bin/python scripts/build_notebooks.py --execute
-```
-
-These commands use the repository's code and the same pinned environment. The notebook setup also selects the repository source explicitly.
-
-### Refreshing data
-
-Cached inputs are immutable and hash-checked. Keep raw files and manifests together. For a fresh vintage, use a new checkout or archive the existing data/manifests/results before removing caches; rerun acquisition and review QA/definition changes. To force ACS extraction from existing bulk sources, archive/remove only the corresponding `data/processed/acs2023_nyc_*.csv` and processed manifest as a deliberate regeneration step. Never hand-edit datasets to make a model pass.
-
-## Repository map
+<details>
+<summary><strong>Folder map</strong></summary>
 
 ```text
-src/econhack/       Acquisition, cleaning, QA, estimation, charts, CLI
-data/raw/          Official source snapshots; large downloads stay local
-data/processed/    Distributable extracts and model inputs
-data/restricted/   Ignored Third Place Index archive; not part of the repo
-data/*manifest*   Provenance and integrity hashes
-docs/models/       Variables, hypotheses, formulas, diagnostics, limitations
-docs/              Protocol, source-note review, findings, student brief
-notebooks/         Executed, portable research companions
-scripts/           Notebook builder and bounded source-discovery utility
-tests/             Source parsing, sentinel handling, joins, weights, lags, estimability
-outputs/tables/    Regression tables, correlations, covariances, coverage
-outputs/figures/   Reproducible PNG and SVG charts
-outputs/qa/        Missingness, exclusions, uniqueness, diagnostics
-.github/workflows/ Offline reproduction and testing
+data/processed/    CSVs and a file-by-file guide
+data/raw/          Included source snapshots
+docs/              Graph guide, definitions, findings and methods
+notebooks/         Executed analysis notebooks
+outputs/figures/   PNG and SVG graphs
+outputs/tables/    Results and summary tables
+outputs/qa/        Data checks and diagnostics
+src/econhack/      Download, cleaning and analysis code
+tests/            Automated checks
 ```
 
-## Research standards
-
-- Distinguish a location, accessible space, actual use, social connection, and a health/economic outcome.
-- Preserve geographic strings, source universes, observation periods, missing/suppressed values, and margins of error.
-- Report exact estimation samples, FE/weighting choices, covariance estimators, intervals, residual diagnostics, and sensitivity results.
-- Do not call an observational association causal or an imprecise estimate evidence of no effect. Multiple exploratory specifications are not a registered confirmatory analysis.
-- CDC estimates and ACS five-year periods carry shared modeling/sampling error. Spatial and temporal dependence, reverse causality, and denominator-driven correlation remain material limitations.
-- The original attachment is summarized in [source-note review](docs/source_notes_review.md). Private organizer logistics are excluded. Prior assistant replies were inaccessible reference placeholders; no missing recommendations are claimed to have been recovered.
-
-Official source links and source-specific caveats are in the model guides and manifests. No agency endorsement is implied. No software license has been selected; source data retain their own terms.
+</details>
