@@ -1,164 +1,113 @@
-# How these graphs help students do research
+# Graph guide
 
-The graphs help students move from a policy idea to a question they can test, check what their data measure, compare explanations, and communicate uncertainty. They are evidence for a research argument, not illustrations that automatically prove a preferred policy.
+The figures are in [outputs/figures](../outputs/figures), as PNGs and SVGs. Each section below links to the data and results behind the graph.
 
-Start with the [student worksheet](student_worksheet.md). No coding is needed to read the PNG images or open the CSV tables in a spreadsheet. The [executed notebooks](../notebooks) expose the calculations for students who want to go further. Each image also has an SVG version in the same folder for clear presentation slides.
+## 1. Socializing time
 
-## Choose a graph for the question
+[View graph](../outputs/figures/atus_published_trend.png)
 
-| Student question | Start with | What it teaches |
-|---|---|---|
-| Has time spent socializing changed? | [Socializing trend](../outputs/figures/atus_published_trend.png) | Time trends, units, missing years, and the difference between describing change and explaining it |
-| Which neighborhoods have more selected nearby facilities? | [NYC access equity](../outputs/figures/nyc_access_equity.png) | Distributions, income groups, medians, and checking an assumption against observed data |
-| Does the association remain after adjustment? | [NYC coefficients](../outputs/figures/nyc_equity_coefficients.png) | Regression coefficients, comparison groups, control variables, and uncertainty |
-| Are facilities associated with loneliness? | [Loneliness scatter](../outputs/figures/access_loneliness_scatter.png) and [coefficients](../outputs/figures/access_loneliness_coefficients.png) | Raw versus adjusted relationships, confounding, ecological inference, and modeled outcomes |
-| Are commercial venues associated with economic activity? | [County trends](../outputs/figures/panel_annual_trends.png), [within-county relationships](../outputs/figures/panel_within_associations.png), and [coefficients](../outputs/figures/panel_coefficients.png) | Rates, fixed effects, lags, matching samples, and robustness |
-| Can we trust the coverage and model fit? | [County coverage](../outputs/figures/panel_coverage.png) and the three diagnostic figures below | Missingness, residuals, outliers, and model limitations |
-| Would a different definition of third spaces change the story? | [Index comparison](../outputs/figures/third_place_index_aggregate_comparison.png) | Measurement choices and agreement between sources |
+Average daily socializing time in the published BLS series fell from 46.8 minutes in 2003 to 35.4 in 2024. Those values cover people age 15+, including people who reported no time in the activity. They come from rounded published hours. The category doesn't capture every face-to-face interaction.
 
-## 1. Socializing trend: describe a problem before explaining it
+There is no comparable 2020 annual observation. The graph shows a national trend, not a youth-specific trend or an explanation for the decline.
 
-**Read:** [atus_published_trend.png](../outputs/figures/atus_published_trend.png). The horizontal axis is diary year; the vertical axis is average minutes per person per day. The series describes all persons age 15+, including people reporting zero time in the activity. It is not the requested age-15–24 series and is not a measure of every face-to-face interaction.
+[Data](../data/processed/atus_published_annual.csv) · [Trend table](../outputs/tables/atus_published_regression.csv) · [Notebook](../notebooks/04_socializing_trend.ipynb) · [Methods](models/atus_published.md)
 
-**Learn:** distinguish an endpoint difference from a steady annual change. The published values imply 46.8 minutes/day in 2003 and 35.4 in 2024: a difference of −11.4 minutes, approximately −24.4%. These are conversions of rounded hours. The line has fluctuations, and 2020 is intentionally missing.
+## 2. NYC access and income
 
-**Use in research:** motivate a question about opportunities to connect, then investigate competing explanations. Neither the decline nor its timing establishes that third-space closures caused it. The graph contains no venue-history variable and cannot establish a youth-specific trend.
+[View graph](../outputs/figures/nyc_access_equity.png)
 
-**Try:** calculate the absolute and percentage changes in a spreadsheet. Explain why the gap must not be filled with zero or connected as if a comparable 2020 estimate existed.
+Each dot is one of the 2,190 tracts in the model sample. Income is on the horizontal axis; the vertical axis counts selected facilities within 800 metres of the tract's Census internal point. The bars show the median count in each income fifth: **8, 5, 4, 3 and 5**, from lowest to highest income.
 
-**Evidence:** [annual values](../outputs/tables/atus_published_annual.csv), [descriptive regression](../outputs/tables/atus_published_regression.csv), [notebook 04](../notebooks/04_socializing_trend.ipynb), [methods](models/atus_published.md).
+This selected public-facility inventory doesn't show a simple increasing income gradient. It includes selected libraries, parks/playgrounds, senior centres and community facilities, not every third space. Distance is straight-line, and entry rules and opening hours haven't been verified. Each tract has equal weight.
 
-## 2. NYC access equity: test whether the expected pattern exists
+[Data](../data/processed/nyc_access.csv) · [Income-group table](../outputs/tables/nyc_equity_income_quintiles.csv) · [Notebook](../notebooks/01_nyc_access_equity.ipynb) · [Methods](models/nyc_equity.md)
 
-**Read:** [nyc_access_equity.png](../outputs/figures/nyc_access_equity.png). Each point in the left panel is a tract in the analysis sample. The vertical axis counts selected facilities within 800 metres of its Census internal point. The right panel groups the same 2,190 tracts into income quintiles and shows medians, not total sites or person-weighted averages.
+## 3. NYC access regression
 
-**Learn:** individual points show variation that a group average can hide. A median describes the middle tract in its group; it does not describe every resident or neighborhood. The displayed quintile medians are 8, 5, 4, 3, and 5 from lowest to highest income. That is not a simple increasing income gradient.
+[View graph](../outputs/figures/nyc_equity_coefficients.png)
 
-**Use in research:** check a claim such as “richer neighborhoods always have more public gathering places.” If the evidence does not match the claim, revise the claim or investigate the measurement. The inventory emphasizes selected parks, libraries, senior centers, and generic community centers; it is not an inventory of every café or welcoming place.
+The dots are regression estimates after accounting for the other included variables and borough differences. The lines are 95% HC3 confidence intervals. The outcome is $\ln(1+A_i)$, where $A_i$ is the nearby-facility count. Income and population density are also transformed; age and poverty shares are in percentage points. Coefficient sizes aren't directly comparable across those units.
 
-**Try:** compare the median with the mean for each quintile. Identify how a few well-supplied tracts can affect the mean. Discuss how population, density, hours, public eligibility, and walking barriers could change the interpretation.
+The income interval includes zero. The [spatial-cluster results](../outputs/tables/nyc_equity_spatial_cluster_sensitivity.csv) give a second uncertainty estimate because nearby tracts can share conditions. The [radius comparison](../outputs/tables/nyc_equity_radius_sensitivity.csv) uses 400, 800 and 1,200 metres.
 
-**Evidence:** [quintile table](../outputs/tables/nyc_equity_income_quintiles.csv), [tract inputs](../data/processed/nyc_access.csv), [notebook 01](../notebooks/01_nyc_access_equity.ipynb), [methods](models/nyc_equity.md).
+[Data](../data/processed/nyc_access.csv) · [Coefficients](../outputs/tables/nyc_equity_coefficients.csv) · [Notebook](../notebooks/01_nyc_access_equity.ipynb) · [Equation and units](models/nyc_equity.md)
 
-## 3. NYC coefficient plot: understand conditional associations
+## 4. Access and loneliness
 
-**Read:** [nyc_equity_coefficients.png](../outputs/figures/nyc_equity_coefficients.png). A dot is an estimated regression coefficient. The horizontal line is a 95% HC3 interval. The vertical reference at zero helps show which intervals include zero. The model adjusts for borough and the other included variables.
+[View graph](../outputs/figures/access_loneliness_scatter.png)
 
-**Learn:** a conditional association can differ from the raw pattern. “Holding included variables constant” describes a model comparison; it does not mean researchers randomly assigned neighborhoods to income or age composition.
+Each dot is a tract, not a person. The graph pairs selected nearby facilities with CDC's modeled adult loneliness prevalence. It shows the raw relationship before the fuller regression adjustment.
 
-**Use in research:** explain why an age, poverty, or income relationship may partly reflect neighborhood density or borough differences. Consult the [spatial-cluster sensitivity](../outputs/tables/nyc_equity_spatial_cluster_sensitivity.csv) alongside the plotted HC3 intervals. Nearby tracts are not independent just because they have different identifiers.
+The outcome refers to 2023; the facilities come from a later snapshot. Demographics, facility placement and other neighbourhood differences could contribute to the pattern. This isn't evidence that an individual using a facility becomes less lonely.
 
-**Try:** find the income term in both interval tables. Explain why a coefficient with an interval crossing zero does not prove that the population association is exactly zero. Compare the [400/800/1,200 m results](../outputs/tables/nyc_equity_radius_sensitivity.csv) to ask whether the definition of “nearby” matters.
+[Data](../data/processed/nyc_loneliness.csv) · [Notebook](../notebooks/02_access_loneliness.ipynb) · [Methods](models/loneliness.md)
 
-**Important:** the outcome is ln(1+facility count), not a raw count. Shares are measured in percentage points, while income and density are logged. Do not rank the importance of predictors by their plotted coefficient magnitudes: their units differ. Borough effects are in the table but omitted from the coefficient figure.
+## 5. Loneliness regression
 
-**Evidence:** [coefficients](../outputs/tables/nyc_equity_coefficients.csv), [model formula and units](models/nyc_equity.md).
+[View graph](../outputs/figures/access_loneliness_coefficients.png)
 
-## 4. Loneliness scatter: separate the observation from the explanation
+The access estimate is negative, but its 95% HC3 interval includes zero. The [spatial-cluster interval](../outputs/tables/access_loneliness_spatial_cluster_sensitivity.csv) is wider and also includes zero. That leaves considerable uncertainty about the adjusted association.
 
-**Read:** [access_loneliness_scatter.png](../outputs/figures/access_loneliness_scatter.png). Each dot is a tract, not a person. The vertical axis is CDC's modeled crude adult loneliness prevalence. The horizontal axis is selected nearby facility supply.
+The outcome is in percentage points, and access is $\ln(1+A_i)$, not a raw facility count. CDC's area estimates already use demographic/contextual inputs, some related to the regression predictors. The regression intervals don't include all CDC modeling or ACS sampling uncertainty.
 
-**Learn:** a scatterplot can show clusters, overlap, spread, and possible nonlinear patterns without establishing why they occur. Many dots at the same integer facility count form vertical columns; this is not a time trend.
+[Data](../data/processed/nyc_loneliness.csv) · [Coefficients](../outputs/tables/access_loneliness_coefficients.csv) · [Adjustment comparison](../outputs/tables/loneliness_adjustment_sensitivity.csv) · [Notebook](../notebooks/02_access_loneliness.ipynb) · [Methods](models/loneliness.md)
 
-**Use in research:** propose and compare explanations: age composition, poverty, residential selection, facility placement, measurement, or other neighborhood conditions. Current facility supply is paired with an earlier 2023 outcome, so the graph cannot establish exposure before outcome.
+## 6. County trends
 
-**Try:** write two explanations that could produce the same pattern. For each, name one additional variable or research design needed to distinguish it from the other explanation. Do not infer that a particular library user is less lonely from a tract-level pattern.
+[View graph](../outputs/figures/panel_annual_trends.png)
 
-**Evidence:** [matched tract data](../data/processed/nyc_loneliness.csv), [notebook 02](../notebooks/02_access_loneliness.ipynb), [methods](models/loneliness.md).
+The panels show snack/nonalcoholic beverage establishments and business applications per 10,000 residents across New York counties. The establishment category is broader than cafés. Applications aren't confirmed business openings.
 
-## 5. Loneliness coefficients: communicate uncertainty honestly
+Both rates use the same population denominator from overlapping ACS five-year estimates. That affects how their movement together can be interpreted. The shaded 2020–2021 period marks the pandemic years; it isn't an estimated pandemic effect.
 
-**Read:** [access_loneliness_coefficients.png](../outputs/figures/access_loneliness_coefficients.png). The outcome is in percentage points. The access coefficient is per natural-log unit of (1+nearby facilities), not per additional facility.
+[Data](../data/processed/panel_county_year.csv) · [Annual summary](../outputs/tables/panel_annual_summary.csv) · [Notebook](../notebooks/03_county_panel.ipynb) · [Methods](models/panel.md)
 
-**Learn:** adjustment changes the question. The [comparison table](../outputs/tables/loneliness_adjustment_sensitivity.csv) contrasts a borough-only specification with the fuller model on the same rows. The plotted access estimate is negative, but its HC3 interval crosses zero; the spatial sensitivity is wider.
+## 7. County coverage
 
-**Use in research:** practice saying, “This specification has an imprecise adjusted association,” rather than “Third spaces do not work” or “More parks reduce loneliness.” CDC estimates already use demographic/contextual inputs, so apparent associations with similar covariates can partly reflect the outcome's construction. Regression intervals do not propagate all CDC or ACS uncertainty.
+[View graph](../outputs/figures/panel_coverage.png)
 
-**Try:** write a 30-word results sentence giving the direction, uncertainty, unit of analysis, and one limitation. Use the [spatial sensitivity](../outputs/tables/access_loneliness_spatial_cluster_sensitivity.csv) to check whether the same sentence remains defensible.
+All 62 New York counties have usable current-model values in each year, 2018–2023: 372 county-year rows. The matched current/lag sample has 310 rows because the first year has no prior-year exposure in this dataset. That expected lag gap isn't a failed download.
 
-**Evidence:** [coefficient table](../outputs/tables/access_loneliness_coefficients.csv), [methods](models/loneliness.md).
+[Data](../data/processed/panel_county_year.csv) · [Coverage table](../outputs/tables/panel_coverage.csv) · [Sample diagnostics](../outputs/tables/panel_model_diagnostics.csv) · [Notebook](../notebooks/03_county_panel.ipynb)
 
-## 6. County annual trends: choose the right denominator
+## 8. Within-county relationships
 
-**Read:** [panel_annual_trends.png](../outputs/figures/panel_annual_trends.png). The two panels show snack/nonalcoholic beverage employer establishments and business applications per 10,000 residents. Read each panel's scale separately. The shading identifies 2020–2021; it does not estimate a pandemic effect.
+[View graph](../outputs/figures/panel_within_associations.png)
 
-**Learn:** rates make differently sized populations more comparable. Both rates share the ACS population denominator, which can also create a relationship mechanically. Annual ACS five-year releases overlap, so these are smoothed period denominators rather than independent annual population measurements.
+These plots remove county and year effects from both variables. A negative axis value is a negative residual, not a negative number of establishments or applications. The current and lagged panels use the same matched rows.
 
-**Use in research:** describe changes in the paired observed counties before fitting a model. Two statewide series moving together cannot establish a within-county relationship or a causal mechanism.
+The plots show the relationship left after those modeled differences are removed. Changing local conditions can still affect both variables, and a lag doesn't make facility availability random.
 
-**Try:** reconstruct a rate as 10,000 × count / population. Explain why the county's number of business applications is not a count of successful new businesses, and why NAICS 722515 is broader than cafés.
+[Data](../data/processed/panel_county_year.csv) · [Correlations and covariances](../outputs/tables/panel_correlations_covariance.csv) · [Notebook](../notebooks/03_county_panel.ipynb) · [Methods](models/panel.md)
 
-**Evidence:** [annual summary](../outputs/tables/panel_annual_summary.csv), [county-year inputs](../data/processed/panel_county_year.csv), [notebook 03](../notebooks/03_county_panel.ipynb), [methods](models/panel.md).
+## 9. County regression comparison
 
-## 7. County coverage: missing data can change the answer
+[View graph](../outputs/figures/panel_coefficients.png)
 
-**Read:** [panel_coverage.png](../outputs/figures/panel_coverage.png). The lines count counties with observed usable source values; 62 is the intended NY county universe. This snapshot has complete current-model coverage across 2018–2023.
+The graph compares current, lagged and joint specifications, including a pandemic-year exclusion. Lines are 95% county-clustered t intervals; the plotted intervals include zero. A coefficient measures applications per 10,000 residents per additional proxy establishment per 10,000 residents.
 
-**Learn:** complete coverage is a finding to verify, not an assumption. Missing, suppressed, and observed-zero values mean different things. The first year's missing lag is expected and does not mean that source coverage failed.
+“Matched” models use the same current/lag sample. The pandemic-excluded matched models retain only 2019 and 2023, because pandemic exposure years are also excluded. Those short comparisons are especially imprecise. County and year effects don't establish a causal effect of café openings.
 
-**Use in research:** check whether a changing sample, rather than changing conditions, could explain a trend. Complete coverage does not establish that the measures are perfectly accurate or suitable for a different research question.
+[Data](../data/processed/panel_county_year.csv) · [Coefficients](../outputs/tables/panel_coefficients.csv) · [Diagnostics](../outputs/tables/panel_model_diagnostics.csv) · [Notebook](../notebooks/03_county_panel.ipynb) · [Methods](models/panel.md)
 
-**Try:** compare 372 current-model observations with 310 matched current/lag observations. Explain the difference using 62 counties and the exact prior-year requirement.
+## 10–12. Model diagnostics
 
-**Evidence:** [coverage table](../outputs/tables/panel_coverage.csv), [model diagnostics and samples](../outputs/tables/panel_model_diagnostics.csv).
+| Figure | What it shows | Inputs and notebook |
+| --- | --- | --- |
+| [NYC access diagnostics](../outputs/figures/nyc_equity_diagnostics.png) | Residuals against fitted log facility counts, plus a normal-quantile comparison | [NYC access data](../data/processed/nyc_access.csv) · [Notebook 01](../notebooks/01_nyc_access_equity.ipynb) |
+| [Loneliness diagnostics](../outputs/figures/access_loneliness_diagnostics.png) | The same checks for the modeled loneliness regression | [NYC loneliness data](../data/processed/nyc_loneliness.csv) · [Notebook 02](../notebooks/02_access_loneliness.ipynb) |
+| [County diagnostics](../outputs/figures/panel_residual_diagnostics.png) | Residual checks for the matched current-exposure fixed-effects model | [County data](../data/processed/panel_county_year.csv) · [Notebook 03](../notebooks/03_county_panel.ipynb) |
 
-## 8. Within-county scatterplots: learn what fixed effects remove
+A residual is the observed outcome minus the fitted value. Curvature, changing spread and extreme points describe what the model leaves unexplained. A straight normal-quantile plot doesn't establish independence or causality. NYC residuals also show spatial dependence, recorded in [access QA](../outputs/qa/nyc_equity_spatial.json) and [loneliness QA](../outputs/qa/access_loneliness_spatial.json).
 
-**Read:** [panel_within_associations.png](../outputs/figures/panel_within_associations.png). Both axes contain values after projecting out county and year effects. They are not raw rates: a negative plotted value is a negative residual, not a negative number of applications or establishments.
+## 13. Third Place Index comparison
 
-**Learn:** counties can differ in stable ways, and statewide annual shocks can move many counties together. These graphs ask about the remaining relationship after removing those modeled differences. The current and lagged panels use the same matched sample.
+[View graph](../outputs/figures/third_place_index_aggregate_comparison.png)
 
-**Use in research:** compare a pooled relationship with a within-county relationship. Fixed effects do not remove time-varying local confounding, and lagging an exposure does not make its variation random.
+The bars show Spearman rank correlations across 2,327 matched NYC tracts. They compare the independent index's broad within-tract venue count with several official selected-facility measures. The correlation for nearby facilities within 800 metres is **0.240**. That isn't “24% explained.”
 
-**Try:** explain what the origin means and why a point far from it deserves investigation. Consult the [pooled and residualized correlations](../outputs/tables/panel_correlations_covariance.csv).
+The sources count different categories over different areas and periods. Neither is a complete measure of usable access. The TPI archive also flags area/density issues; those fields aren't used in these models. Row-level TPI data remain outside the public repository because redistribution permission is unclear.
 
-## 9. County coefficient comparison: test robustness, not preferred signs
+[Aggregate comparison](../outputs/tables/third_place_index_comparison.csv) · [Aggregate QA](../outputs/tables/third_place_index_qa_summary.csv) · [Official facility input](../data/processed/nyc_selected_facilities.csv) · [Source details](models/third_place_index.md)
 
-**Read:** [panel_coefficients.png](../outputs/figures/panel_coefficients.png). Each row corresponds to a model term. Bars are 95% county-clustered t intervals, not the observed spread of counties. “Matched” means the current/lag comparison uses identical observations. “Joint” includes current and lagged exposure together.
-
-**Learn:** estimates can change when the sample or model changes. The pandemic-excluded matched models retain only 2019 and 2023 outcome years because they also exclude pandemic exposure years. This makes that sensitivity especially short and imprecise.
-
-**Use in research:** report all declared comparisons, not just the row with a favored sign or smallest p-value. The plotted intervals cross zero in this snapshot. A positive point estimate does not establish that subsidizing cafés will create businesses.
-
-**Try:** compare current and lagged estimates on the matched sample. State the coefficient's units: applications per 10,000 residents per additional proxy establishment per 10,000 residents. Explain why a high overall R-squared can coexist with little additional within-county explanatory power.
-
-**Evidence:** [coefficients](../outputs/tables/panel_coefficients.csv), [diagnostics](../outputs/tables/panel_model_diagnostics.csv), [methods](models/panel.md).
-
-## 10–12. Diagnostic figures: ask whether the model leaves structure behind
-
-| Figure | Read it this way | Research response |
-|---|---|---|
-| [NYC equity diagnostics](../outputs/figures/nyc_equity_diagnostics.png) | Left: residual versus fitted transformed supply. Right: residual quantiles against a normal reference. | Look for curvature, changing spread, and extreme points; consider specification and measurement explanations. |
-| [Loneliness diagnostics](../outputs/figures/access_loneliness_diagnostics.png) | The same checks, now for modeled prevalence residuals. | Consider shared demographic inputs and spatial dependence; a smooth fit is not independent validation of CDC estimates. |
-| [County panel diagnostics](../outputs/figures/panel_residual_diagnostics.png) | Residuals from the matched contemporaneous FE model. | Investigate influential observations and serial/spatial dependence using the exported diagnostics. |
-
-**Learn:** a residual is observed outcome minus fitted outcome. Patterns around zero can reveal aspects the model did not capture. A QQ departure does not by itself invalidate OLS coefficients; a straight QQ line does not establish causality, independence, or a correct model. Robust or clustered standard errors address specified dependence problems, not every misspecification.
-
-**Try:** sketch the residual pattern you would expect if a linear model missed a curved relationship. Then explain why deleting unusual observations simply to improve the picture would be inappropriate. Any alternative sample or model must have a stated reason and be reported alongside the original.
-
-## 13. Index comparison: definitions are part of the research
-
-**Read:** [third_place_index_aggregate_comparison.png](../outputs/figures/third_place_index_aggregate_comparison.png). Bars are Spearman rank correlations between the independent index's broad within-tract venue count and several official selected-facility measures, across 2,327 matched NYC tracts. They are not counts, effect sizes, or confidence intervals.
-
-**Learn:** sources can rank neighborhoods differently because they measure different constructs. The 800 m comparison is 0.240. That is rank agreement; it is not “24% of access explained,” and it is not proof that either dataset is wrong.
-
-**Use in research:** justify whether “third spaces” means public facilities, commercial venues, nearby supply, within-tract supply, or usable places. Treat alternative definitions as a measurement sensitivity. Do not redistribute row-level TPI data from the local restricted folder without resolving the source terms.
-
-**Try:** list three reasons the measures could disagree: category scope, geographic catchment, source coverage, or observation period. Explain what a site audit or resident consultation could add.
-
-**Evidence:** [aggregate comparison](../outputs/tables/third_place_index_comparison.csv), [source audit](models/third_place_index.md).
-
-## Correlations and covariances alongside the graphs
-
-The notebooks and CSVs include both. Covariance records how variables vary together and depends on their units; Pearson correlation standardizes covariance and ranges from −1 to 1. Neither proves causation, and a weak linear correlation can miss a curved pattern. Spearman correlation compares ranks rather than raw distances between values. Always state the sample and whether variables are pooled or residualized.
-
-## Build a defensible research argument
-
-1. **Question:** define the population, place, period, exposure, and outcome.
-2. **Measurement:** explain what the variables capture and miss.
-3. **Description:** show one central pattern and the observations behind it.
-4. **Explanation:** compare plausible mechanisms and potential confounders.
-5. **Robustness:** ask whether the conclusion survives another sample, definition, or covariance method.
-6. **Policy:** explain what the evidence supports now and how a proposed intervention would be evaluated.
-
-For a six-slide hackathon presentation, use one descriptive graph, one uncertainty or robustness graph, and an evidence appendix. Select the graphs that answer your question; using every plot does not make the argument stronger. Credit the original sources, state the sample and units, and label any proposed targets or scenarios separately from observed results. No library event-study figure exists because the required credible event/outcome panel has not been established.
+There is no library event-study graph: the required verified treatment history, comparison areas and repeated outcomes weren't established.
